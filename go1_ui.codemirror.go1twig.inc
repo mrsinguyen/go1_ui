@@ -1,6 +1,6 @@
 <?php
 
-function at_ui_twig_form($form, $form_state) {
+function go1_ui_twig_form($form, $form_state) {
   $form = array('#redirect' => FALSE);
 
   $form['code'] = array(
@@ -9,16 +9,16 @@ function at_ui_twig_form($form, $form_state) {
     '#default_value' => (isset($_SESSION['twig_execute_code'])
                           ? $_SESSION['twig_execute_code']
                           : "{{ user.access|fn__format_date('long') }}"),
-    '#description' => at_ui_codemirror_submit_shortcut_hint(),
+    '#description' => go1_ui_codemirror_submit_shortcut_hint(),
     '#ajax' => array(
       'event' => 'change',
-      'callback' => 'at_ui_twig_form_ajax_callback',
-      'wrapper' => 'at-ui-results',
+      'callback' => 'go1_ui_twig_form_ajax_callback',
+      'wrapper' => 'go1-ui-results',
     ),
   );
 
   $form['result'] = array(
-    '#prefix' => '<div id="at-ui-results">',
+    '#prefix' => '<div id="go1-ui-results">',
     '#suffix' => '</div>',
     '#markup' => '',
   );
@@ -29,18 +29,18 @@ function at_ui_twig_form($form, $form_state) {
 }
 
 /**
- * Ajax callback for at_ui_twig_form().
+ * Ajax callback for go1_ui_twig_form().
  */
-function at_ui_twig_form_ajax_callback($form, &$form_state) {
+function go1_ui_twig_form_ajax_callback($form, &$form_state) {
   $_SESSION['twig_execute_code'] = $code = $form_state['values']['code'];
 
   ob_start();
   try {
-    print at_container('twig_string')->render($code);
+    print go1_container('twig_string')->render($code);
   }
   catch (Exception $e) {
     drupal_set_message($e->getMessage());
-    at_trace($e->getTrace(), 'message');
+    go1_trace($e->getTrace(), 'message');
   }
 
   $output = ob_get_clean();
@@ -52,9 +52,9 @@ function at_ui_twig_form_ajax_callback($form, &$form_state) {
 }
 
 /**
- * Define form structure for /at/twig/views
+ * Define form structure for /go1/twig/views
  */
-function at_ui_twig_views_form($form = array(), $form_state) {
+function go1_ui_twig_views_form($form = array(), $form_state) {
   $view_name = arg(3);
 
   $names = array('' => '-- Select a view --');
@@ -84,7 +84,7 @@ function at_ui_twig_views_form($form = array(), $form_state) {
       }
 
       $form['display_id'] = array(
-        '#prefix' => '<div id="at-ui-displays">',
+        '#prefix' => '<div id="go1-ui-displays">',
         '#suffix' => '</div>',
         '#type' => 'select',
         '#title' => 'Display ID',
@@ -117,7 +117,7 @@ function at_ui_twig_views_form($form = array(), $form_state) {
     '#type' => 'submit',
     '#value' => 'Update',
     '#submit' => array(function($form, &$form_state){
-      drupal_goto("at/twig/views/{$form_state['values']['name']}/{$form_state['values']['display_id']}");
+      drupal_goto("go1/twig/views/{$form_state['values']['name']}/{$form_state['values']['display_id']}");
     })
   );
 

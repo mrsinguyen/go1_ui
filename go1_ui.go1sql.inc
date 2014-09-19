@@ -1,6 +1,6 @@
 <?php
 
-function at_ui_sql_form($form, &$form_state) {
+function go1_ui_sql_form($form, &$form_state) {
   $form = array('#redirect' => FALSE);
 
   $form['string'] = array(
@@ -10,16 +10,16 @@ function at_ui_sql_form($form, &$form_state) {
     '#default_value' => (isset($_SESSION['sql_execute_code'])
                 ? $_SESSION['sql_execute_code']
                 : "SELECT u.uid, u.name, u.mail, u.access \nFROM {users} u \nWHERE u.uid \nORDER BY u.access DESC \nLIMIT 10"),
-    '#description' => at_ui_codemirror_submit_shortcut_hint(),
+    '#description' => go1_ui_codemirror_submit_shortcut_hint(),
     '#ajax' => array(
       'event' => 'change',
-      'callback' => 'at_ui_sql_form_ajax_callback',
-      'wrapper' => 'at-sql-results',
+      'callback' => 'go1_ui_sql_form_ajax_callback',
+      'wrapper' => 'go1-sql-results',
     ),
   );
 
   $form['result'] = array(
-    '#prefix' => '<div id="at-sql-results">',
+    '#prefix' => '<div id="go1-sql-results">',
     '#markup' => '',
     '#suffix' => '</div>',
   );
@@ -27,7 +27,7 @@ function at_ui_sql_form($form, &$form_state) {
   return $form;
 }
 
-function at_ui_sql_form_ajax_callback($form, &$form_state) {
+function go1_ui_sql_form_ajax_callback($form, &$form_state) {
   $_SESSION['sql_execute_code'] = $sql = $form_state['values']['string'];
 
   $query = db_query($sql);

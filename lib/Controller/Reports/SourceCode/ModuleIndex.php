@@ -1,8 +1,8 @@
 <?php
-namespace Drupal\at_ui\Controller\Reports\SourceCode;
+namespace Drupal\go1_ui\Controller\Reports\SourceCode;
 
 class ModuleIndex {
-  private $base_path = 'admin/reports/documentation/at_base/source';
+  private $base_path = 'admin/reports/documentation/go1_base/source';
 
   public function render() {
     foreach (system_list('module_enabled') as $module => $module_info) {

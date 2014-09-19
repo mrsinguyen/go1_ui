@@ -1,8 +1,8 @@
 <?php
-namespace Drupal\at_ui\Controller\Reports;
+namespace Drupal\go1_ui\Controller\Reports;
 
 class SourceCode {
-  private $base_path = 'admin/reports/documentation/at_base/source';
+  private $base_path = 'admin/reports/documentation/go1_base/source';
   private $module;
   private $path;
 
@@ -134,9 +134,9 @@ class SourceCode {
   }
 
   private function parseFunctionDocBlock($fn) {
-    require_once at_library('parsedown') . '/Parsedown.php';
+    require_once go1_library('parsedown') . '/Parsedown.php';
 
-    $comment = at_id(new \ReflectionFunction($fn))->getDocComment();
+    $comment = go1_id(new \ReflectionFunction($fn))->getDocComment();
     $lines = explode("\n", $comment);
     foreach ($lines as $i => &$line) {
       $line = trim($line);
@@ -149,7 +149,7 @@ class SourceCode {
       }
     }
 
-    return at_id(new \Parsedown())->text(implode("\n", $lines));
+    return go1_id(new \Parsedown())->text(implode("\n", $lines));
   }
 
   private function renderModuleDirReadMe($dir) {
@@ -158,9 +158,9 @@ class SourceCode {
     }
 
     if (is_file("{$dir}/README.md")) {
-      require_once at_library('parsedown') . '/Parsedown.php';
+      require_once go1_library('parsedown') . '/Parsedown.php';
       $output = file_get_contents("{$dir}/README.md");
-      return '<div class="readme parsedown">' . at_id(new \Parsedown())->text($output) . '</div>';
+      return '<div class="readme parsedown">' . go1_id(new \Parsedown())->text($output) . '</div>';
     }
   }
 
@@ -227,6 +227,6 @@ class SourceCode {
       }
     }
 
-    return drupal_get_form('at_ui_display_file', $file, $type);
+    return drupal_get_form('go1_ui_display_file', $file, $type);
   }
 }

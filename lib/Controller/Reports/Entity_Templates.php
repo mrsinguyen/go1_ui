@@ -1,12 +1,12 @@
 <?php
-namespace Drupal\at_ui\Controller\Reports;
+namespace Drupal\go1_ui\Controller\Reports;
 
 class Entity_Templates {
   public function render() {
     $rows = array();
 
-    foreach (at_modules('at_base', 'entity_template') as $module) {
-      foreach (at_config($module, 'entity_template')->get('entity_templates') as $entity_type => $entity_config) {
+    foreach (go1_modules('go1_base', 'entity_template') as $module) {
+      foreach (go1_config($module, 'entity_template')->get('entity_templates') as $entity_type => $entity_config) {
         foreach ($entity_config as $bundle => $bundle_config) {
           foreach ($bundle_config as $view_mode => $config) {
             $attached = array();

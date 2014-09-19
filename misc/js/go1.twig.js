@@ -2,7 +2,7 @@
 
 $(function(){
   // Hide the form submit button
-  $('#at-ui-twig-form').find('.form-submit').hide();
+  $('#go1-ui-twig-form').find('.form-submit').hide();
 
   var save = function(cm) {
     $('#edit-code').val(cm.getValue()).trigger('change');

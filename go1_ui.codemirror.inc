@@ -1,7 +1,7 @@
 <?php
 
-function at_ui_include_code_mirror($extras = array(), $theme = 'monokai') {
-  $path = at_library('code.mirror', NULL, FALSE);
+function go1_ui_include_code_mirror($extras = array(), $theme = 'monokai') {
+  $path = go1_library('code.mirror', NULL, FALSE);
 
   drupal_add_js($path . '/lib/codemirror.js');
   drupal_add_css($path . '/lib/codemirror.css');
@@ -18,8 +18,8 @@ function at_ui_include_code_mirror($extras = array(), $theme = 'monokai') {
  * @param  array  $extras
  * @param  string $theme
  */
-function at_ui_include_codemirror($extras = array(), $theme = 'monokai') {
-  $path = at_library('code.mirror', NULL, FALSE);
+function go1_ui_include_codemirror($extras = array(), $theme = 'monokai') {
+  $path = go1_library('code.mirror', NULL, FALSE);
 
   drupal_add_js($path . '/lib/codemirror.js');
   drupal_add_css($path . '/lib/codemirror.css');
@@ -32,24 +32,24 @@ function at_ui_include_codemirror($extras = array(), $theme = 'monokai') {
 /**
  * @return string.
  */
-function at_ui_codemirror_submit_shortcut_hint() {
+function go1_ui_codemirror_submit_shortcut_hint() {
   return 'Use <code>Ctrl+s</code> or <code>Cmd+s</code> to submit the form.';
 }
 
 /**
  * Display source code of a file support CodeMirror.
  */
-function at_ui_display_file($form, $form_state, $file, $type = 'unknow') {
-  drupal_add_css(drupal_get_path('module', 'at_ui') . '/misc/css/cm.css');
+function go1_ui_display_file($form, $form_state, $file, $type = 'unknow') {
+  drupal_add_css(drupal_get_path('module', 'go1_ui') . '/misc/css/cm.css');
 
   switch ($type) {
     case 'twig':
-      at_ui_include_codemirror(array('mode/htmlmixed/htmlmixed.js', 'mode/xml/xml.js', 'addon/mode/overlay.js'));
-      drupal_add_js(drupal_get_path('module', 'at_ui') . '/misc/js/at.twig.js');
+      go1_ui_include_codemirror(array('mode/htmlmixed/htmlmixed.js', 'mode/xml/xml.js', 'addon/mode/overlay.js'));
+      drupal_add_js(drupal_get_path('module', 'go1_ui') . '/misc/js/go1.twig.js');
       break;
 
     case 'yaml':
-      at_ui_include_codemirror(array('mode/yaml/yaml.js'));
+      go1_ui_include_codemirror(array('mode/yaml/yaml.js'));
       drupal_add_js('(function(){
         Drupal.behaviors.atuiDisplayFile = {
           attach: function(context, settings) {
@@ -66,7 +66,7 @@ function at_ui_display_file($form, $form_state, $file, $type = 'unknow') {
       break;
 
     case 'css':
-      at_ui_include_codemirror(array('mode/css/css.js'));
+      go1_ui_include_codemirror(array('mode/css/css.js'));
       drupal_add_js('(function(){
         Drupal.behaviors.atuiDisplayFile = {
           attach: function(context, settings) {
@@ -83,7 +83,7 @@ function at_ui_display_file($form, $form_state, $file, $type = 'unknow') {
       break;
 
     case 'javascript':
-      at_ui_include_codemirror(array('mode/javascript/javascript.js'));
+      go1_ui_include_codemirror(array('mode/javascript/javascript.js'));
       drupal_add_js('(function(){
         Drupal.behaviors.atuiDisplayFile = {
           attach: function(context, settings) {
@@ -100,8 +100,8 @@ function at_ui_display_file($form, $form_state, $file, $type = 'unknow') {
       break;
 
     case 'php':
-      at_ui_include_codemirror(array('mode/clike/clike.js', 'mode/php/php.js'));
-      drupal_add_js(drupal_get_path('module', 'at_ui') . '/misc/js/devel.php.js');
+      go1_ui_include_codemirror(array('mode/clike/clike.js', 'mode/php/php.js'));
+      drupal_add_js(drupal_get_path('module', 'go1_ui') . '/misc/js/devel.php.js');
       break;
   }
 
@@ -126,16 +126,16 @@ function at_ui_display_file($form, $form_state, $file, $type = 'unknow') {
 }
 
 /**
- * Submit handler for at_ui_display_file form.
+ * Submit handler for go1_ui_display_file form.
  */
-function at_ui_display_file_submit($form, $form_state) {
+function go1_ui_display_file_submit($form, $form_state) {
   list($file, $content) = array($form['code']['#file'], $form_state['values']['code']);
   $fp = fopen($file, 'w');
   fwrite($fp, $content);
   fclose($fp);
 }
 
-function at_ui_menu_alter__devel(&$menu) {
+function go1_ui_menu_alter__devel(&$menu) {
   $menu['user/%user/devel']['page callback']
     = $menu['user/%user/devel/render']['page callback']
     = $menu['node/%node/devel']['page callback']

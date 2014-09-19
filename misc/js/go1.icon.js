@@ -5,17 +5,17 @@ var icon_info = function(service, icon_set, name) {
     + '<table style="width: 100%;">'
     + '  <tr><td><strong>Service:</strong></td> <td>'+ service +'</td></tr>'
     + '  <tr><td><strong>Set:</strong></td>     <td>'+ icon_set +'</td></tr>'
-    + "  <tr><td><strong>PHP:</strong></td>     <td><code>&lt;?php at_icon('"+ icon_set +"/"+ name +"', '"+ service +"'); ?&gt;</code></td></tr>"
+    + "  <tr><td><strong>PHP:</strong></td>     <td><code>&lt;?php go1_icon('"+ icon_set +"/"+ name +"', '"+ service +"'); ?&gt;</code></td></tr>"
     + "  <tr><td><strong>Twig:</strong></td>    <td><code>{{ '"+ icon_set +"/"+ name +"'|icon('"+ service +"') }}</code></td></tr>"
     + '</table>';
 };
 
 Drupal.behaviors.atuiIcon = {
   attach: function(context, settings) {
-    var service  = $('.at-icon-list').data('service');
-    var icon_set = $('.at-icon-list').data('set');
+    var service  = $('.go1-icon-list').data('service');
+    var icon_set = $('.go1-icon-list').data('set');
 
-    $('.at-icon-list li i', context).once('atuiIcon')
+    $('.go1-icon-list li i', context).once('atuiIcon')
       .append(function(){ return '<span>' + $(this).data('name') + '</span>'; })
       .click(function(){
         var name = $(this).data('name');

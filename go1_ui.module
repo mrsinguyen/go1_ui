@@ -1,23 +1,23 @@
 <?php
 
-require_once dirname(__FILE__) . '/at_ui.debug.inc';
-require_once dirname(__FILE__) . '/at_ui.codemirror.develphp.inc';
-require_once dirname(__FILE__) . '/at_ui.codemirror.inc';
+require_once dirname(__FILE__) . '/go1_ui.debug.inc';
+require_once dirname(__FILE__) . '/go1_ui.codemirror.develphp.inc';
+require_once dirname(__FILE__) . '/go1_ui.codemirror.inc';
 
 /**
  * Implements hook_init()
  */
-function at_ui_init() {
-  if (at_debug() && !defined('AT_DISABLE_DEVELOPMENT_INDICATOR') && empty($_GET['no-indicator'])) {
-    drupal_add_css(drupal_get_path('module', 'at_ui') . '/misc/css/dev.indicator.css');
-    drupal_add_js(drupal_get_path('module', 'at_ui') . '/misc/js/dev.indicator.js');
+function go1_ui_init() {
+  if (go1_debug() && !defined('GO1_DISABLE_DEVELOPMENT_INDICATOR') && empty($_GET['no-indicator'])) {
+    drupal_add_css(drupal_get_path('module', 'go1_ui') . '/misc/css/dev.indicator.css');
+    drupal_add_js(drupal_get_path('module', 'go1_ui') . '/misc/js/dev.indicator.js');
   }
 }
 
 /**
  * Implements hook_menu()
  */
-function at_ui_menu_alter(&$menu) {
+function go1_ui_menu_alter(&$menu) {
   $menu['user/%user/devel']['page callback']
     = $menu['user/%user/devel/render']['page callback']
     = $menu['node/%node/devel']['page callback']
@@ -56,9 +56,9 @@ function at_ui_menu_alter(&$menu) {
  *
  * @param type $theme_registry
  */
-function at_ui_theme_registry_alter(&$theme_registry) {
-  $theme_registry['user_admin_permissions']['theme path'] = drupal_get_path('module', 'at_ui');
-  $theme_registry['user_admin_permissions']['function'] = 'at_ui_user_admin_permissions';
+function go1_ui_theme_registry_alter(&$theme_registry) {
+  $theme_registry['user_admin_permissions']['theme path'] = drupal_get_path('module', 'go1_ui');
+  $theme_registry['user_admin_permissions']['function'] = 'go1_ui_user_admin_permissions';
   unset($theme_registry['user_admin_permissions']['includes']);
 }
 
@@ -71,7 +71,7 @@ function at_ui_theme_registry_alter(&$theme_registry) {
  *
  * @ingroup themeable
  */
-function at_ui_user_admin_permissions($variables) {
+function go1_ui_user_admin_permissions($variables) {
   $form = $variables['form'];
 
   $rids = element_children($form['checkboxes']);
@@ -121,7 +121,7 @@ function at_ui_user_admin_permissions($variables) {
 /**
  * Implements hook_form_alter().
  */
-function at_ui_form_alter(&$form, &$form_state, $form_id) {
+function go1_ui_form_alter(&$form, &$form_state, $form_id) {
 
   switch ($form_id) {
 

@@ -1,7 +1,7 @@
 (function($){
 
 $(function(){
-  $('#at-ui-sql-form').find('.form-submit').hide();
+  $('#go1-ui-sql-form').find('.form-submit').hide();
 
   var save = function(cm) {
     $('#edit-string').val(cm.getValue()).trigger('change');

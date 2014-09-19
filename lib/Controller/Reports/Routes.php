@@ -1,11 +1,11 @@
 <?php
-namespace Drupal\at_ui\Controller\Reports;
+namespace Drupal\go1_ui\Controller\Reports;
 
 class Routes {
   public function render() {
     $rows = array();
-    foreach (at_modules('at_base', 'routes') as $module) {
-      foreach (at_config($module, 'routes')->get('routes') as $path => $route) {
+    foreach (go1_modules('go1_base', 'routes') as $module) {
+      foreach (go1_config($module, 'routes')->get('routes') as $path => $route) {
         $attached = array();
         if (isset($route['attached'])) {
           $attached = $route['attached'];
@@ -43,8 +43,8 @@ class Routes {
   }
 
   public function findExternalBreadcrumbs($path) {
-    foreach (at_modules('at_base', 'breadcrumb') as $module) {
-      $config = at_config($module, 'breadcrumb')->get('breadcrumb');
+    foreach (go1_modules('go1_base', 'breadcrumb') as $module) {
+      $config = go1_config($module, 'breadcrumb')->get('breadcrumb');
 
       if (isset($config['paths'][$path])) {
         return $config['paths'][$path];

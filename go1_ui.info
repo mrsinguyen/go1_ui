@@ -1,7 +1,7 @@
-name = AT UI
+name = GO1 UI
 version = 7.x-1.0-dev
 description = Provide some tools for developers on dev enviroment.
 core = 7.x
-package = Andy Truong
+package = GO1
 
-dependencies[] = at_base
+dependencies[] = go1_base

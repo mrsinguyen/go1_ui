@@ -3,9 +3,9 @@
  * @file
  */
 
-function atsm() {
+function go1sm() {
   if (user_access('access devel information')) {
-    require_once at_library('kint') . '/Kint.class.php';
+    require_once go1_library('kint') . '/Kint.class.php';
 
     ob_start();
     call_user_func_array("Kint::dump", func_get_args());
@@ -15,17 +15,17 @@ function atsm() {
   }
 }
 
-function atdr() {
+function go1dr() {
   if (user_access('access devel information')) {
-    require_once at_library('kint') . '/Kint.class.php';
+    require_once go1_library('kint') . '/Kint.class.php';
     ob_start();
     call_user_func_array("Kint::dump", func_get_args());
     return ob_get_clean();
   }
 }
 
-function at_trace($trace = null, $return = 'print') {
-  require_once at_library('kint') . '/Kint.class.php';
+function go1_trace($trace = null, $return = 'print') {
+  require_once go1_library('kint') . '/Kint.class.php';
 
   ob_start();
   Kint::trace($trace);
@@ -48,14 +48,14 @@ function at_trace($trace = null, $return = 'print') {
 
 function atd() {
   if (user_access('access devel information')) {
-    require_once at_library('kint') . '/Kint.class.php';
+    require_once go1_library('kint') . '/Kint.class.php';
     call_user_func_array("Kint::dump", func_get_args());
   }
 }
 
 function atdd() {
   if (user_access('access devel information')) {
-    require_once at_library('kint') . '/Kint.class.php';
+    require_once go1_library('kint') . '/Kint.class.php';
     call_user_func_array("Kint::dump", func_get_args());
     die;
   }
