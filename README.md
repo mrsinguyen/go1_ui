@@ -1,4 +1,4 @@
-go1_ui
+GO1 UI
 =====
 
 Development tools
