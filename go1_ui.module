@@ -133,5 +133,5 @@ function clear_twig_cache(&$form) {
   foreach (file_scan_directory(drupal_realpath(variable_get('file_temporary_path')) . '/', '/\.php$/') as $file) {
     unlink($file->uri);
   }
-  drupal_set_message("Cache twig was clear");
+  drupal_set_message(t("Twig cache was cleared"));
 }
