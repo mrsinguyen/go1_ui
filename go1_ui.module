@@ -26,7 +26,7 @@ function go1_ui_menu_alter(&$menu) {
     = $menu['comment/%comment/devel/render']['page callback']
     = $menu['taxonomy/term/%taxonomy_term/devel']['page callback']
     = $menu['taxonomy/term/%taxonomy_term/devel/render']['page callback']
-    = 'atdr';
+    = 'go1dr';
 
   $menu['user/%user/devel']['page arguments']
     = $menu['user/%user/devel/render']['page arguments']
@@ -43,8 +43,8 @@ function go1_ui_menu_alter(&$menu) {
     = array(2);
 
   if (isset($menu['block/%bean_delta/devel'])) {
-    $menu['block/%bean_delta/devel']['page callback'] = 'atdr';
-    $menu['block/%bean_delta/devel/render']['page callback'] = 'atdr';
+    $menu['block/%bean_delta/devel']['page callback'] = 'go1dr';
+    $menu['block/%bean_delta/devel/render']['page callback'] = 'go1dr';
     $menu['block/%bean_delta/devel']['page arguments'] = array(1);
     $menu['block/%bean_delta/devel/render']['page arguments'] = array(1);
   }

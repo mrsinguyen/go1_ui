@@ -25,7 +25,7 @@ class Routes {
         }
         $breadcrumbs = array_merge($breadcrumbs, $this->findExternalBreadcrumbs($path));
 
-        $rows[] = array($module, $path, atdr($route), atdr($attached), atdr($blocks), atdr($breadcrumbs));
+        $rows[] = array($module, $path, go1dr($route), go1dr($attached), go1dr($blocks), go1dr($breadcrumbs));
       }
     }
 

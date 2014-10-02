@@ -221,7 +221,7 @@ class SourceCode {
 
         case 'json':
           if ($json = json_decode(file_get_contents($file), TRUE)) {
-            return atdr($json);
+            return go1dr($json);
           }
           break;
       }

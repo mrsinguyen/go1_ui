@@ -21,7 +21,7 @@ class Entity_Templates {
               unset($config['blocks']);
             }
 
-            $rows[] = array($entity_type, $bundle, $view_mode, atdr($config), atdr($attached), atdr($blocks));
+            $rows[] = array($entity_type, $bundle, $view_mode, go1dr($config), go1dr($attached), go1dr($blocks));
           }
         }
       }
