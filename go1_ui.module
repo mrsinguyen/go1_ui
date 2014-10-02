@@ -18,29 +18,11 @@ function go1_ui_init() {
  * Implements hook_menu()
  */
 function go1_ui_menu_alter(&$menu) {
-  $menu['user/%user/devel']['page callback']
-    = $menu['user/%user/devel/render']['page callback']
-    = $menu['node/%node/devel']['page callback']
-    = $menu['node/%node/devel/render']['page callback']
-    = $menu['comment/%comment/devel']['page callback']
-    = $menu['comment/%comment/devel/render']['page callback']
-    = $menu['taxonomy/term/%taxonomy_term/devel']['page callback']
-    = $menu['taxonomy/term/%taxonomy_term/devel/render']['page callback']
-    = 'atdr';
+  $menu['user/%user/devel']['page callback'] = $menu['user/%user/devel/render']['page callback'] = $menu['node/%node/devel']['page callback'] = $menu['node/%node/devel/render']['page callback'] = $menu['comment/%comment/devel']['page callback'] = $menu['comment/%comment/devel/render']['page callback'] = $menu['taxonomy/term/%taxonomy_term/devel']['page callback'] = $menu['taxonomy/term/%taxonomy_term/devel/render']['page callback'] = 'atdr';
 
-  $menu['user/%user/devel']['page arguments']
-    = $menu['user/%user/devel/render']['page arguments']
-    = $menu['node/%node/devel']['page arguments']
-    = $menu['node/%node/devel/render']['page arguments']
-    = $menu['comment/%comment/devel']['page arguments']
-    = $menu['comment/%comment/devel/render']['page arguments']
-    = $menu['taxonomy/term/%taxonomy_term/devel']['page arguments']
-    = $menu['taxonomy/term/%taxonomy_term/devel/render']['page arguments']
-    = array(1);
+  $menu['user/%user/devel']['page arguments'] = $menu['user/%user/devel/render']['page arguments'] = $menu['node/%node/devel']['page arguments'] = $menu['node/%node/devel/render']['page arguments'] = $menu['comment/%comment/devel']['page arguments'] = $menu['comment/%comment/devel/render']['page arguments'] = $menu['taxonomy/term/%taxonomy_term/devel']['page arguments'] = $menu['taxonomy/term/%taxonomy_term/devel/render']['page arguments'] = array(1);
 
-  $menu['taxonomy/term/%taxonomy_term/devel']['page arguments']
-    = $menu['taxonomy/term/%taxonomy_term/devel/render']['page arguments']
-    = array(2);
+  $menu['taxonomy/term/%taxonomy_term/devel']['page arguments'] = $menu['taxonomy/term/%taxonomy_term/devel/render']['page arguments'] = array(2);
 
   if (isset($menu['block/%bean_delta/devel'])) {
     $menu['block/%bean_delta/devel']['page callback'] = 'atdr';
@@ -93,7 +75,6 @@ function go1_ui_user_admin_permissions($variables) {
     }
     else {
       // Permission row.
-
       // Checkbox.
       $form['checkboxes'][$rid][$key]['#title'] = $roles[$rid] . ': ' . $form['permission'][$key]['#markup'];
       $form['checkboxes'][$rid][$key]['#title_display'] = 'invisible';
@@ -130,7 +111,7 @@ function go1_ui_form_system_performance_settings_alter(&$form) {
 }
 
 function clear_twig_cache(&$form) {
-  foreach (file_scan_directory(conf_path() . '/private/temp/', '/\.php$/') as $file) {
+  foreach (file_scan_directory(drupal_realpath(variable_get('file_temporary_path')) . '/', '/\.php$/') as $file) {
     unlink($file->uri);
   }
   drupal_set_message("Cache twig was clear");
