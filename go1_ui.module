@@ -122,16 +122,21 @@ function go1_ui_user_admin_permissions($variables) {
  * Implements hook_form_FORM_ID_alter();
  */
 function go1_ui_form_system_performance_settings_alter(&$form) {
-  $form['clear_cache']['clear_twig_cache'] = array(
+  $form['clear_cache']['twig_caches_clear'] = array(
     '#type' => 'submit',
     '#value' => 'Clear twig caches',
-    '#submit' => array('clear_twig_cache')
+    '#submit' => array('go1_ui_twig_caches_clear')
   );
 }
 
-function clear_twig_cache(&$form) {
+/**
+ * Twig caches clear callback
+ *
+ */
+function go1_ui_twig_caches_clear() {
   foreach (file_scan_directory(drupal_realpath(variable_get('file_temporary_path')) . '/', '/\.php$/') as $file) {
     unlink($file->uri);
   }
-  drupal_set_message(t("Twig cache was cleared"));
+
+  drupal_set_message(t('Twig caches cleared.'));
 }
